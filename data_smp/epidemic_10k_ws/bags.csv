@@ -1,0 +1,11 @@
+Model,Model_Command,Max_Simulation_Time,Worker_Thread_Count,Static_Window_Size,Fraction_of_Total_Window,GVT_Method,GVT_Period,State_Save_Period,Simulation_Runtime_(secs.),Number_of_Objects,Number_of_Partitions,Local_Positive_Events_Sent,Remote_Positive_Events_Sent,Local_Negative_Events_Sent,Remote_Negative_Events_Sent,Primary_Rollbacks,Secondary_Rollbacks,Coast_Forwarded_Events,Cancelled_Events,Events_Processed,Events_Committed,Average_Memory_Usage_(MB)
+epidemic,./epidemic_sim,15000,6,4,1.0,asynchronous,1000,32,15.2236,10000,49,4072319,0,178886,0,34703,1653,576934,178886,4070117,3893433,718
+epidemic,./epidemic_sim,15000,6,16,1.0,asynchronous,1000,32,15.3609,10000,49,4072295,0,178862,0,34700,1653,577141,178862,4070095,3893433,717
+epidemic,./epidemic_sim,15000,6,32,1.0,asynchronous,1000,32,15.308,10000,49,4072315,0,178882,0,34708,1655,577156,178882,4070120,3893433,719
+epidemic,./epidemic_sim,15000,6,64,1.0,asynchronous,1000,32,15.3534,10000,49,4072372,0,178939,0,34714,1656,577167,178939,4070176,3893433,719
+epidemic,./epidemic_sim,15000,6,128,1.0,asynchronous,1000,32,15.225,10000,49,4072358,0,178925,0,34709,1656,577048,178925,4070162,3893433,718
+epidemic,./epidemic_sim,15000,6,256,1.0,asynchronous,1000,32,15.2523,10000,49,4072320,0,178887,0,34704,1654,577074,178887,4070123,3893433,717
+epidemic,./epidemic_sim,15000,6,0,0.75,asynchronous,1000,32,15.1483,10000,49,4072365,0,178932,0,34712,1655,577105,178932,4070167,3893433,720
+epidemic,./epidemic_sim,15000,6,0,0.50,asynchronous,1000,32,15.3134,10000,49,4072298,0,178865,0,34705,1653,576892,178865,4070092,3893433,718
+epidemic,./epidemic_sim,15000,6,0,0.25,asynchronous,1000,32,15.3671,10000,49,4072411,0,178978,0,34712,1661,577369,178978,4070222,3893433,716
+epidemic,./epidemic_sim,15000,6,0,0.05,asynchronous,1000,32,15.2242,10000,49,4072377,0,178944,0,34710,1655,577136,178944,4070179,3893433,722

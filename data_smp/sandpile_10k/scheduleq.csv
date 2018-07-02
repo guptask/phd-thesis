@@ -1,0 +1,9 @@
+Model,Model_Command,Max_Simulation_Time,Worker_Thread_Count,Schedule_Queue_Type,Schedule_Queue_Count,is_LP_Migration_ON,GVT_Method,GVT_Period,State_Save_Period,Simulation_Runtime_(secs.),Number_of_Objects,Local_Positive_Events_Sent,Remote_Positive_Events_Sent,Local_Negative_Events_Sent,Remote_Negative_Events_Sent,Primary_Rollbacks,Secondary_Rollbacks,Coast_Forwarded_Events,Cancelled_Events,Events_Processed,Events_Committed,Average_Memory_Usage_(MB)
+sandpile,./sandpile_sim-d100,15000,6,stl-multiset,1,off,asynchronous,1000,32,43.5507,10000,15579357,0,248,0,205,42,3619,248,15579501,15579109,103
+sandpile,./sandpile_sim-d100,15000,6,stl-multiset,2,off,asynchronous,1000,32,27.6524,10000,15849008,0,269899,0,140337,49154,3814605,269899,15952925,15579109,141
+sandpile,./sandpile_sim-d100,15000,6,stl-multiset,3,off,asynchronous,1000,32,50.7446,10000,19373712,0,3794603,0,742848,626642,31679175,3794603,19699216,15579109,95
+sandpile,./sandpile_sim-d100,15000,6,stl-multiset,6,off,asynchronous,1000,32,53.7032,10000,19452991,0,3873890,0,754571,567217,27468246,3873888,19719552,15579089,90
+sandpile,./sandpile_sim-d100,15000,6,stl-multiset,1,off,asynchronous,1000,32,43.6863,10000,15579259,0,150,0,169,57,3449,150,15579406,15579109,103
+sandpile,./sandpile_sim-d100,15000,6,stl-multiset,2,off,asynchronous,1000,32,26.6771,10000,15842417,0,263308,0,137223,45086,3616897,263308,15940967,15579109,145
+sandpile,./sandpile_sim-d100,15000,6,stl-multiset,3,off,asynchronous,1000,32,50.6724,10000,19377115,0,3798006,0,740336,630329,31963110,3798006,19703154,15579109,95
+sandpile,./sandpile_sim-d100,15000,6,stl-multiset,6,off,asynchronous,1000,32,53.2667,10000,19492157,0,3913048,0,770194,576673,28196525,3913048,19782797,15579109,90

@@ -1,0 +1,11 @@
+Model,Model_Command,Max_Simulation_Time,Worker_Thread_Count,Static_Window_Size,Fraction_of_Total_Window,GVT_Method,GVT_Period,State_Save_Period,Simulation_Runtime_(secs.),Number_of_Objects,Number_of_Partitions,Local_Positive_Events_Sent,Remote_Positive_Events_Sent,Local_Negative_Events_Sent,Remote_Negative_Events_Sent,Primary_Rollbacks,Secondary_Rollbacks,Coast_Forwarded_Events,Cancelled_Events,Events_Processed,Events_Committed,Average_Memory_Usage_(MB)
+epidemic,./epidemic_sim-mmodel_10k_ba.dat,15000,6,4,1.0,asynchronous,1000,32,20.4915,10000,36,4577068,0,683579,0,71606,10851,1360745,683579,4569302,3893489,672
+epidemic,./epidemic_sim-mmodel_10k_ba.dat,15000,6,16,1.0,asynchronous,1000,32,20.4285,10000,36,4577902,0,684413,0,71761,10817,1363253,684413,4570643,3893489,677
+epidemic,./epidemic_sim-mmodel_10k_ba.dat,15000,6,32,1.0,asynchronous,1000,32,20.3735,10000,36,4576623,0,683134,0,71494,10835,1357478,683134,4569351,3893489,677
+epidemic,./epidemic_sim-mmodel_10k_ba.dat,15000,6,64,1.0,asynchronous,1000,32,20.4943,10000,36,4587535,0,694046,0,72152,11078,1374102,694046,4580283,3893489,670
+epidemic,./epidemic_sim-mmodel_10k_ba.dat,15000,6,128,1.0,asynchronous,1000,32,20.4857,10000,36,4576831,0,683343,0,71756,10801,1360061,683343,4569437,3893488,678
+epidemic,./epidemic_sim-mmodel_10k_ba.dat,15000,6,256,1.0,asynchronous,1000,32,20.569,10000,36,4577399,0,683910,0,71731,10857,1361995,683910,4569978,3893489,678
+epidemic,./epidemic_sim-mmodel_10k_ba.dat,15000,6,0,0.75,asynchronous,1000,32,20.5624,10000,36,4589009,0,695520,0,72387,11146,1380722,695520,4581768,3893489,676
+epidemic,./epidemic_sim-mmodel_10k_ba.dat,15000,6,0,0.50,asynchronous,1000,32,20.4696,10000,36,4577362,0,683873,0,71712,10827,1364752,683873,4569809,3893489,674
+epidemic,./epidemic_sim-mmodel_10k_ba.dat,15000,6,0,0.25,asynchronous,1000,32,20.7029,10000,36,4589188,0,695699,0,72299,11223,1377497,695699,4582102,3893489,675
+epidemic,./epidemic_sim-mmodel_10k_ba.dat,15000,6,0,0.05,asynchronous,1000,32,20.4605,10000,36,4576544,0,683059,0,71649,10805,1359809,683059,4569229,3893485,676

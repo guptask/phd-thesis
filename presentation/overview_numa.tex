@@ -1,0 +1,41 @@
+\documentclass[12pt]{article}
+\usepackage[paperheight=15in,paperwidth=19in,margin=0in,heightrounded,showframe]{geometry}
+\usepackage{graphicx}
+\usepackage[font=Large,labelfont=bf]{caption}
+
+\begin{document}
+
+\begin{figure}
+    \includegraphics[width=.3\textwidth]{data/epidemic_10k_ba/plots/top_performers}\quad
+    \includegraphics[width=.3\textwidth]{data/epidemic_10k_ws/plots/top_performers}\quad
+    \includegraphics[width=.3\textwidth]{data/sandpile_10k/plots/top_performers}
+    \medskip
+    \includegraphics[width=.3\textwidth]{data/epidemic_100k_ba/plots/top_performers}\quad
+    \includegraphics[width=.3\textwidth]{data/epidemic_100k_ws/plots/top_performers}\quad
+    \includegraphics[width=.3\textwidth]{data/sandpile_1m/plots/top_performers}
+    \medskip
+    \includegraphics[width=.3\textwidth]{data/traffic_10k/plots/top_performers}\quad
+    \includegraphics[width=.3\textwidth]{data/traffic_1m/plots/top_performers}\quad
+    \includegraphics[width=.3\textwidth]{data/pcs_10k/plots/top_performers}
+    \caption*{Performance of Scheduling Techniques : Overview of Top Performers}
+\end{figure}
+
+\newpage
+
+\begin{figure}
+    \includegraphics[width=.3\textwidth]{data/epidemic_10k_ba/plots/worst_performers}\quad
+    \includegraphics[width=.3\textwidth]{data/epidemic_10k_ws/plots/worst_performers}\quad
+    \includegraphics[width=.3\textwidth]{data/sandpile_10k/plots/worst_performers}
+    \medskip
+    \includegraphics[width=.3\textwidth]{data/epidemic_100k_ba/plots/worst_performers}\quad
+    \includegraphics[width=.3\textwidth]{data/epidemic_100k_ws/plots/worst_performers}\quad
+    \includegraphics[width=.3\textwidth]{data/sandpile_1m/plots/worst_performers}
+    \medskip
+    \includegraphics[width=.3\textwidth]{data/traffic_10k/plots/worst_performers}\quad
+    \includegraphics[width=.3\textwidth]{data/traffic_1m/plots/worst_performers}\quad
+    \includegraphics[width=.3\textwidth]{data/pcs_10k/plots/worst_performers}
+    \caption*{Performance of Scheduling Techniques : Overview of Worst Performers}
+\end{figure}
+
+\end{document}
+

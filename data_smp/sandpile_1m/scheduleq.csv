@@ -1,0 +1,12 @@
+Model,Model_Command,Max_Simulation_Time,Worker_Thread_Count,Schedule_Queue_Type,Schedule_Queue_Count,is_LP_Migration_ON,GVT_Method,GVT_Period,State_Save_Period,Simulation_Runtime_(secs.),Number_of_Objects,Local_Positive_Events_Sent,Remote_Positive_Events_Sent,Local_Negative_Events_Sent,Remote_Negative_Events_Sent,Primary_Rollbacks,Secondary_Rollbacks,Coast_Forwarded_Events,Cancelled_Events,Events_Processed,Events_Committed,Average_Memory_Usage_(MB)
+sandpile,./sandpile_sim,15000,6,stl-multiset,1,off,asynchronous,1000,32,43.7556,1000000,15579264,0,155,0,139,57,2900,155,15579359,15579109,223
+sandpile,./sandpile_sim,15000,6,stl-multiset,2,off,asynchronous,1000,32,27.147,1000000,15803480,0,224371,0,125417,29981,3089098,224371,15891791,15579109,262
+sandpile,./sandpile_sim,15000,6,stl-multiset,3,off,asynchronous,1000,32,67.0413,1000000,15651915,0,72806,0,8585,9042,275355,72806,15652785,15579109,206
+sandpile,./sandpile_sim,15000,6,stl-multiset,6,off,asynchronous,1000,32,62.6172,1000000,16987365,0,1408256,0,192808,194736,7556842,1408256,17055044,15579109,207
+sandpile,./sandpile_sim,15000,6,splay-tree,3,off,asynchronous,1000,32,68.5508,1000000,15649738,0,70629,0,8883,8636,277637,70629,15650040,15579109,204
+sandpile,./sandpile_sim,15000,6,stl-multiset,1,off,asynchronous,1000,32,44.1045,1000000,15579267,0,158,0,167,47,3614,158,15579389,15579109,223
+sandpile,./sandpile_sim,15000,6,stl-multiset,2,off,asynchronous,1000,32,27.4221,1000000,15796515,0,217406,0,123172,31220,3100667,217406,15885053,15579109,261
+sandpile,./sandpile_sim,15000,6,stl-multiset,3,off,asynchronous,1000,32,67.1316,1000000,15646431,0,67322,0,8782,9772,298553,67322,15647354,15579109,206
+sandpile,./sandpile_sim,15000,6,stl-multiset,6,off,asynchronous,1000,32,62.2331,1000000,16727047,0,1147938,0,178123,172365,6786793,1147938,16800285,15579109,209
+sandpile,./sandpile_sim,15000,6,splay-tree,3,off,asynchronous,1000,32,68.618,1000000,15627482,0,48373,0,7113,6280,208058,48373,15628205,15579109,204
+sandpile,./sandpile_sim,15000,6,splay-tree,6,off,asynchronous,1000,32,66.4557,1000000,16958221,0,1379112,0,210658,196903,7919730,1379112,17040471,15579109,205
