@@ -199,9 +199,8 @@
 
 \setcounter{page}{1}
 \pagenumbering{roman}
-\clearpage
 
-\newpage
+\clearpage
 \chapter*{Abstract}\label{chapter:abstract}
 
 In Parallel Discrete Event Simulation (PDES), the \emph{pending event set} refers to the set of events
@@ -259,7 +258,6 @@ study on profile-driven data collected from discrete event simulations \cite{wil
 guide the design and optimization of scheduling strategies for the pending event set in a Time Warp
 synchronized parallel simulation.
 
-\newpage
 %% BLANK page inserted based on thesis guidelines mentioned in
 %% https://grad.uc.edu/student-life/etd/page_order.html
 \clearpage
@@ -267,7 +265,7 @@ synchronized parallel simulation.
 \hfill
 \clearpage
 
-\newpage
+\clearpage
 \chapter*{Acknowledgements}
 
 First and foremost, I would like to express my sincere gratitude to my advisor Dr.\ Wilsey for his constant
@@ -2634,7 +2632,7 @@ The performance metrics used in this study are:
 
 \section[Benchmarks]{Simulation Models}\label{sec:simulation_models}
 
-This section describes four \textsc{warped2} simulation models.  These models have been used as benchmarks to
+This section describes three \textsc{warped2} simulation models.  These models have been used as benchmarks to
 study and compare the performance of the \textsc{warped2} kernel for the design hypotheses presented in
 Chapter \ref{chapter:event_scheduling}.  Some of these models are based on simulation models developed
 elsewhere and are commonly used as test-benches by \emph{Discrete Event Simulation} researchers.
@@ -2850,70 +2848,6 @@ each have been presented in Tables \ref{table:traffic_10k_config} and \ref{table
     \caption{List of Traffic Configurations}\label{table:traffic_configs}
 \end{table}
 
-\subsection{Abelian Sandpile}\label{subsec:sandpile}
-
-The \emph{Abelian Sandpile} model or \emph{Bak-Tang-Wiesenfeld} model is a cellular automaton that is the
-first discovered example of self-organized criticality in a dynamical system \cite{bak-87}.  The behavior is
-considered Abelian because the final configuration is a function of the initial state, and is not affected by
-the order in which the operations occur.  Each point on a finite square grid has an associated value which
-represents the slope of the sandpile at that point.  This slope increases as "grains of sand" get randomly
-added to the pile.  This growth continues till the slope exceeds a certain specified threshold at which point
-it is considered unstable and it collapses.  This collapse transfers the collapsed sand equally to its
-adjacent points, thereby increasing the slope of its neighbors.  The sand is steadily added to the center of
-the grid and it spreads out in all directions due to the cascading behavior explained above.
-
-Any point $(x,y)$ with $z(x,y) \geq 4$ is considered unstable and ready to topple.  That sends one grain of
-sand to each of its four adjacent neighbors.  $z(x,y)$ represents the slope of the sandpile at point $(x,y)$.
-The following equations represent how the sandpiles grow and collapse:
-
-\begin{center}
-  $z(x,y) \to z(x,y) - 4$\\
-  $z(x\pm1,y) \to z(x\pm1,y) + 1$\\
-  $z(x,y\pm1) \to z(x,y\pm1) + 1$\\
-\end{center}
-
-\noindent
-Each point represents a logical process in the simulation. The state of each logical process has the following
-attributes:
-
-\begin{itemize}
-\item height of the sandpile at point $(x,y)$ [ represented by $z(x,y)$ ], and
-\item number of sandpile collapses at that point.
-\end{itemize}
-
-\begin{table}
-    \centering
-    \begin{tabular}{| l | c | r |}
-        \hline
-        \textbf{Configuration} & \textbf{Grid Dimension} & \textbf{Number of Cells}\\
-        \hline
-        sandpile-10k    & 100 x 100     & 10,000\\
-        sandpile-1m     & 1000 x 1000   & 1,000,000\\
-        \hline
-    \end{tabular}
-    \caption{List of Sandpile Configurations}\label{table:sandpile_configs}
-\end{table}
-
-\noindent
-Table \ref{table:sandpile_configs} presents the test configurations used in this thesis. Tables
-\ref{table:sandpile_10k_config} and \ref{table:sandpile_1m_config} presents a detailed view for each configuration.
-Figure \ref{fig:sandpile} presents a magnified view of the output of an Abelian sandpile (sandpile-1m in Table
-\ref{table:sandpile_configs}) where the colors indicate the slope of the points.
-
-\begin{itemize}
-\item \emph{Black}: point has never suffered a collapse and is empty,
-\item \emph{Green}: point has collapsed in the past, but is now empty,
-\item \emph{Yellow}: point with $slope = 1$,
-\item \emph{Red}: point with $slope = 2$, and 
-\item \emph{White}: point with $slope = 3$.
-\end{itemize}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.5\textwidth]{figures/sandpile.pdf}
-    \caption{Abelian Sandpile}\label{fig:sandpile}
-\end{figure}
-
 
 \section{Analysis of Performance}\label{sec:perf_analysis}
 
@@ -3093,7 +3027,7 @@ explanation of event chain.
           {Performance of Event Chains: Epidemic Model (\emph{10,000} LPs, \emph{Watts-Strogatz} diffusion network)}
           {plot:epidemic_10k_ws:chains}
 
-\newpage
+\clearpage
 Figure \ref{plot:traffic_10k:chains} shows that the performance of Traffic model with 10,000 LPs
 remains invariant with change in chain size and worker thread count. Similar to Figures
 \ref{plot:epidemic_10k_ba:chains} and \ref{plot:epidemic_10k_ws:chains}, rollback count is invariant
@@ -3110,18 +3044,6 @@ other configurations.
 \plotTrial{traffic_1m/plots/chains/threads_vs_chainsize_key_count_1}
           {Performance of Event Chains: Traffic Model (\emph{1,048,576} LPs)}
           {plot:traffic_1m:chains}
-
-\clearpage
-Figure \ref{plot:sandpile_10k:chains} shows the performance of chains for an Abelian Sandpile
-simulation. The behavior observed here is significantly different from that observed for Epidemic
-and Traffic models. The performance varies with increase in worker thread count. It is worst for 16
-threads and improves drastically beyond that point. Rollback count also varies for different worker
-thread count and chain sizes.  Similar to Traffic and Epidemic models, chain size does not have any
-direct impact on performance.
-
-\plotTrial{sandpile_10k/plots/chains/threads_vs_chainsize_key_count_1}
-          {Performance of Event Chains: Abelian Sandpile Model (\emph{10,000} LPs)}
-          {plot:sandpile_10k:chains}
 
 \clearpage
 \subsection{Block Scheduling}\label{subsec:block_plot}
@@ -3166,19 +3088,7 @@ the 10,000 LP traffic simulation.
           {Performance of Event Blocks: Traffic Model (\emph{1,048,576} LPs)}
           {plot:traffic_1m:blocks}
 
-\newpage
-Figure \ref{plot:sandpile_10k:blocks} shows the performance of blocks for an Abelian Sandpile
-simulation. The behavior observed here is significantly different from that observed for Epidemic
-and Traffic models. The performance varies with increase in worker thread count. It is mostly worst
-for 16 threads and improves drastically beyond that point. Rollback count also varies for different
-worker thread count and chain sizes. Unlike Traffic and Epidemic models, chain size does have a
-major direct impact on performance.
-
-\plotTrial{sandpile_10k/plots/blocks/threads_vs_blocksize_key_count_1}
-          {Performance of Event Blocks: Abelian Sandpile Model (\emph{10,000} LPs)}
-          {plot:sandpile_10k:blocks}
-
-\newpage
+\clearpage
 \subsection{Bags with Static Window Size}\label{subsec:bags_static_window_plot}
 
 In this study, the performance of bags and its static window size selection parameter are being
@@ -3187,10 +3097,9 @@ profile-driven partitioning for each benchmark model is driven by the event prof
 sequential simulation. Configuration for this sequential simulation can be found in the configuration
 tables in the Appendix, namely Tables \ref{table:epidemic_10k_ws_config}, \ref{table:epidemic_100k_ws_config},
 \ref{table:epidemic_10k_ba_config}, \ref{table:epidemic_100k_ba_config}, \ref{table:traffic_10k_config},
-\ref{table:traffic_1m_config}, \ref{table:pcs_10k_config}, \ref{table:sandpile_10k_config} and
-\ref{table:sandpile_1m_config}. The performance of \textsc{warped-2} is being evaluated for different
-thread counts (4, 8, 16, 32 and 64) when using bags with different static window sizes, namely 4, 16,
-32, 64, 128 and 256.
+\ref{table:traffic_1m_config} and \ref{table:pcs_10k_config}. The performance of \textsc{warped-2} is being
+evaluated for different thread counts (4, 8, 16, 32 and 64) when using bags with different static window sizes,
+namely 4, 16, 32, 64, 128 and 256.
 
 Figures \ref{plot:epidemic_10k_ba:bags:static_window} and
 \ref{plot:epidemic_10k_ws:bags:static_window} show the performance of Epidemic Model where events
@@ -3360,14 +3269,6 @@ optimistically-synchronized parallel simulation such as \textsc{warped-2}.
                 {Top performers for PCS (\emph{10,000} LPs) model}
                 {plot:pcs_10k:consolidated}
 
-\plotOverallNUMA{sandpile_10k}
-                {Top performers for Sandpile (\emph{10,000} LPs) model}
-                {plot:sandpile_10k:consolidated}
-
-\plotOverallNUMA{sandpile_1m}
-                {Top performers for Sandpile (\emph{1,000,000} LPs) model}
-                {plot:sandpile_1m:consolidated}
-
 \subsection{Top Performers}
 \label{subsec:top_performers}
 Figures \ref{plot:traffic_10k:consolidated}(a) and \ref{plot:traffic_1m:consolidated}(a) show that
@@ -3378,19 +3279,10 @@ Traffic model. Speedup against sequential simulation for both Traffic models are
 range of scheduling techniques. The difference in schedule queue count is most likely due to higher
 event processing ratio for the larger Traffic model.
 
-Figures \ref{plot:sandpile_10k:consolidated}(a) and \ref{plot:sandpile_1m:consolidated}(a) show
-massive speedup for the two Abelian Sandpile models (10,000 and 1,000,000 LPs respectively). Unlike
-the Traffic models, both Sandpile models prefer one schedule queue and Ladder Queue with Lock-free
-Unsorted Bottom is not a clear choice here. In general, all variants of Ladder Queue perform well
-for both Sandpile models. This  of one schedule queue is a bit surprising and probably because
-sandpile has the highest density of causally linked events because of its radially spreading network
-structure.
-
 Figure \ref{plot:pcs_10k:consolidated}(a) shows Ladder Queue with Lock-free Unsorted Bottom is the
-clear choice for the PCS model. Similar to the Abelian Sandpile models, PCS seems to prefer one
-schedule queue. It is most likely due to high causal event density like the Sandpile models. This
-observation is significant because although both Traffic and PCS models use mesh network, their
-performance window do not correlate so closely.
+clear choice for the PCS model. PCS seems to prefer one schedule queue most likely due to high causal
+event density. This observation is significant because although both Traffic and PCS models use mesh
+network, their performance window do not correlate so closely.
 
 In case of the two Epidemic models with 10,000 LPs, the performance pattern looks strikingly
 different when Epidemic with Watts-Strogatz network is compared to Epidemic with Barabasi-Albert
@@ -3425,7 +3317,6 @@ which scheduling techniques are effective for a model, but PCS and Traffic defy 
 \subsection{Worst Performers}
 \label{subsec:worst_performers}
 Figures \ref{plot:traffic_10k:consolidated}(b), \ref{plot:traffic_1m:consolidated}(b),
-\ref{plot:sandpile_10k:consolidated}(b), \ref{plot:sandpile_1m:consolidated}(b),
 \ref{plot:pcs_10k:consolidated}(b), \ref{plot:epidemic_100k_ba:consolidated}(b) and
 \ref{plot:epidemic_100k_ws:consolidated}(b) show that scheduling techniques in the lowest 10\texttt{th}
 percentile are all slower than sequential simulation, except for Epidemic models with 10,000 LPs (Figures
@@ -3434,17 +3325,16 @@ scheduling techniques (type of schedule queue, blocks and chains) use one schedu
 variety of worker threads. It is expected that contention will slow down simulation but it is surprising
 that the speedup is less than 1.
 
-Chain and Bag scheduling techniques are some of the worst performers for the Epidemic models while
-Chains perform slightly better than Block scheduling for the Sandpile models. The performance of Chain
-scheduling suffers more than Block scheduling when LP count increases for Traffic and Sandpile models.
-Both Chain and Block scheduling techniques perform very poorly for the 10,000 LP sized Traffic and
-Sandpile models but performance of Block scheduling improves when LP count increases. Usually Block
-scheduling techniques perform poorly for larger block sizes of 64, 128 or 256.
+Chain and Bag scheduling techniques are some of the worst performers for the Epidemic models. The
+performance of Chain scheduling suffers more than Block scheduling when LP count increases for the Traffic
+model. Both Chain and Block scheduling techniques perform very poorly for the 10,000 LP sized Traffic model
+but performance of Block scheduling improves when LP count increases. Usually Block scheduling techniques
+perform poorly for larger block sizes of 64, 128 or 256.
 
 These observations for Chain, Bag and Block scheduling indicates that over-aggressive estimates of
 causal independence are ineffective. The simulation models which suffer most from these over-aggressive
-thresholds are Traffic, PCS and Abelian Sandpile - all have a higher density of causally-linked events
-when compared to the Epidemic models.
+thresholds are Traffic and PCS - both have a higher density of causally-linked events when compared to the
+Epidemic models.
 
 \subsubsection{Summary}
 \label{subsubsec:summary_worst}
@@ -3455,21 +3345,20 @@ can affect performance of different scheduling techniques. Epidemic models are o
 because these models have the lowest density of causally-linked events. So contention for shared pending
 event set is its primary hindrance for the Epidemic models. Based on observations from Figures
 \ref{plot:epidemic_10k_ba:consolidated}(b) and \ref{plot:epidemic_10k_ws:consolidated}(b), Epidemic
-models with 10,000 LPs suffer less than other models and shows speedup > 1. This observation indicates
+models with 10,000 LPs suffer less than other models and shows speedup $>$ 1. This observation indicates
 that causal violations due to over-aggressive thresholds adversely affect performance equally or even
 more than contention for the shared event pool.
 
 \subsection{Anomalies in Performance}
 \label{subsec:anomalies}
 
-Figures \ref{plot:sandpile_10k:consolidated}(a) and \ref{plot:sandpile_1m:consolidated}(a) show unusually
-high speedup values for the Abelian Sandpile model. Even Epidemic model with Barabasi-Albert network and
-10,000 LPs shows high speedup values in Figure \ref{plot:epidemic_10k_ba:consolidated}(a). This behavior
-indicates that some aspect of the processing architecture is making \textsc{warped-2} simulations extremely
-efficient. Since these simulations were executed on NUMA-based computing platforms, the effect of distributed
-caches is worth exploring. Section \ref{sec:smp_performance} presents a small study on a SMP node which
-does not have such distributed cache arrangements. This study is useful for pinpointing that cache effects
-in NUMA machines do play a major role in artificially boosting the performance of \textsc{warped-2}.
+Epidemic model with Barabasi-Albert network and 10,000 LPs shows extremely high speedup values in Figure
+\ref{plot:epidemic_10k_ba:consolidated}(a). This behavior indicates that some aspect of the processing
+architecture is making \textsc{warped-2} simulations extremely efficient. Since these simulations were
+executed on NUMA-based computing platforms, the effect of distributed caches is worth exploring. Section
+\ref{sec:smp_performance} presents a small study on a SMP node which does not have such distributed cache
+arrangements. This study is useful for pinpointing that cache effects in NUMA machines do play a major role
+in artificially boosting the performance of \textsc{warped-2}.
 
 \section[WARPED-2 on SMP]{Performance of WARPED-2 on SMP machine}
 \label{sec:smp_performance}
@@ -3504,7 +3393,6 @@ in NUMA machines do play a major role in artificially boosting the performance o
 \end{table}
 
 Figures \ref{plot:traffic_10k:consolidated_smp}, \ref{plot:traffic_1m:consolidated_smp},
-\ref{plot:sandpile_10k:consolidated_smp}, \ref{plot:sandpile_1m:consolidated_smp},
 \ref{plot:pcs_10k:consolidated_smp}, \ref{plot:epidemic_100k_ba:consolidated_smp},
 \ref{plot:epidemic_100k_ws:consolidated_smp}, \ref{plot:epidemic_10k_ba:consolidated_smp} and
 \ref{plot:epidemic_10k_ws:consolidated_smp} show the speedup vs. sequential simulation for all simulation
@@ -3529,10 +3417,6 @@ The following observations can be made from the data:
   \item The results show that 6 threads with 6 schedule queues is generally not a good option, mostly due
         to load imbalance which triggers too many rollbacks. The configurations that seem to perform well
         are 6 threads with 2 or 3 schedule queues. 
-
-  \item Nearly all Time Warp configurations run slower than Sequential simulation for the Abelian Sandpile
-        simulation model. This is surprising but, given the quadratic growth and unique radial spread in
-        its network, it is possibly not a model well-suited for parallel simulation.
 \end{enumerate}
 
 \plotOverallSMP{traffic_10k}
@@ -3562,15 +3446,6 @@ The following observations can be made from the data:
 \plotOverallSMP{pcs_10k}
                {Top performers for PCS (\emph{10,000} LPs) model}
                {plot:pcs_10k:consolidated_smp}
-
-\plotOverallSMP{sandpile_10k}
-               {Top performers for Sandpile (\emph{10,000} LPs) model}
-               {plot:sandpile_10k:consolidated_smp}
-
-\plotOverallSMP{sandpile_1m}
-               {Top performers for Sandpile (\emph{1,000,000} LPs) model}
-               {plot:sandpile_1m:consolidated_smp}
-
 
 
 \chapter[Conclusion and Future Research]{Conclusions and Suggestions for Future Research}
@@ -4326,195 +4201,5 @@ Table \ref{table:pcs_10k_config} shows the configuration for this model.
                  {pcs 10k/plots/blocks/threads vs count key blocksize 128}
 \plotTrialNoLabel{pcs_10k/plots/blocks/threads_vs_count_key_blocksize_64}
                  {pcs 10k/plots/blocks/threads vs count key blocksize 64}
-
-\clearpage
-\section[\textsc{sandpile-10k lp}s]{Abelian Sandpile Model with 10,000 LPs}
-
-Table \ref{table:sandpile_10k_config} shows the configuration for this model.
-
-\begin{table}
-    \centering
-    \begin{tabular}{|| l | r ||}
-        \hline
-        Parameter                           &   Values\\ [0.5ex]
-        \hline\hline
-        Number of Intersections (or LPs)    &   10,000\\
-        Type of network connecting LPs      &   4-directional grid\\
-        Origin of simulation                &   (50,50) co-ordinate\\
-        Grid Size                           &   100x100\\
-        Simulation Time                     &   15,000 timestamp units\\
-        Sequential Simulation Time for calculating modularity   &   8,000 timestamp units\\
-        \hline
-    \end{tabular}
-    \caption{\textsc{Sandpile Model} setup}\label{table:sandpile_10k_config}
-\end{table}
-
-\plotTrialNoLabel{sandpile_10k/plots/chains/threads_vs_count_key_chainsize_8}
-                 {sandpile 10k/plots/chains/threads vs count key chainsize 8}
-\plotTrialNoLabel{sandpile_10k/plots/chains/threads_vs_chainsize_key_count_1}
-                 {sandpile 10k/plots/chains/threads vs chainsize key count 1}
-\plotTrialNoLabel{sandpile_10k/plots/chains/threads_vs_chainsize_key_count_4}
-                 {sandpile 10k/plots/chains/threads vs chainsize key count 4}
-\plotTrialNoLabel{sandpile_10k/plots/chains/threads_vs_chainsize_key_count_16}
-                 {sandpile 10k/plots/chains/threads vs chainsize key count 16}
-\plotTrialNoLabel{sandpile_10k/plots/chains/threads_vs_count_key_chainsize_4}
-                 {sandpile 10k/plots/chains/threads vs count key chainsize 4}
-\plotTrialNoLabel{sandpile_10k/plots/chains/threads_vs_count_key_chainsize_12}
-                 {sandpile 10k/plots/chains/threads vs count key chainsize 12}
-\plotTrialNoLabel{sandpile_10k/plots/chains/threads_vs_chainsize_key_count_8}
-                 {sandpile 10k/plots/chains/threads vs chainsize key count 8}
-\plotTrialNoLabel{sandpile_10k/plots/chains/threads_vs_chainsize_key_count_2}
-                 {sandpile 10k/plots/chains/threads vs chainsize key count 2}
-\plotTrialNoLabel{sandpile_10k/plots/chains/threads_vs_count_key_chainsize_16}
-                 {sandpile 10k/plots/chains/threads vs count key chainsize 16}
-\plotTrialNoLabel{sandpile_10k/plots/scheduleq/threads_vs_count_key_type_ladder-queue:96}
-                 {sandpile 10k/plots/scheduleq/threads vs count key type ladder-queue 96}
-\plotTrialNoLabel{sandpile_10k/plots/scheduleq/threads_vs_count_key_type_stl-multiset}
-                 {sandpile 10k/plots/scheduleq/threads vs count key type stl-multiset}
-\plotTrialNoLabel{sandpile_10k/plots/scheduleq/threads_vs_count_key_type_unsorted-bottom:50}
-                 {sandpile 10k/plots/scheduleq/threads vs count key type unsorted-bottom 50}
-\plotTrialNoLabel{sandpile_10k/plots/scheduleq/threads_vs_count_key_type_lockfree-unsorted-bottom:50}
-                 {sandpile 10k/plots/scheduleq/threads vs count key type lockfree-unsorted-bottom 50}
-\plotTrialNoLabel{sandpile_10k/plots/scheduleq/threads_vs_type_key_count_16}
-                 {sandpile 10k/plots/scheduleq/threads vs type key count 16}
-\plotTrialNoLabel{sandpile_10k/plots/scheduleq/threads_vs_type_key_count_4}
-                 {sandpile 10k/plots/scheduleq/threads vs type key count 4}
-\plotTrialNoLabel{sandpile_10k/plots/scheduleq/threads_vs_count_key_type_lockfree-unsorted-bottom:96}
-                 {sandpile 10k/plots/scheduleq/threads vs count key type lockfree-unsorted-bottom 96}
-\plotTrialNoLabel{sandpile_10k/plots/scheduleq/threads_vs_count_key_type_splay-tree}
-                 {sandpile 10k/plots/scheduleq/threads vs count key type splay-tree}
-\plotTrialNoLabel{sandpile_10k/plots/scheduleq/threads_vs_count_key_type_unsorted-bottom:96}
-                 {sandpile 10k/plots/scheduleq/threads vs count key type unsorted-bottom 96}
-\plotTrialNoLabel{sandpile_10k/plots/scheduleq/threads_vs_count_key_type_ladder-queue:50}
-                 {sandpile 10k/plots/scheduleq/threads vs count key type ladder-queue 50}
-\plotTrialNoLabel{sandpile_10k/plots/scheduleq/threads_vs_type_key_count_8}
-                 {sandpile 10k/plots/scheduleq/threads vs type key count 8}
-\plotTrialNoLabel{sandpile_10k/plots/scheduleq/threads_vs_count_key_type_lockfree-unsorted-bottom:16}
-                 {sandpile 10k/plots/scheduleq/threads vs count key type lockfree-unsorted-bottom 16}
-\plotTrialNoLabel{sandpile_10k/plots/scheduleq/threads_vs_type_key_count_2}
-                 {sandpile 10k/plots/scheduleq/threads vs type key count 2}
-\plotTrialNoLabel{sandpile_10k/plots/scheduleq/threads_vs_count_key_type_ladder-queue:16}
-                 {sandpile 10k/plots/scheduleq/threads vs count key type ladder-queue 16}
-\plotTrialNoLabel{sandpile_10k/plots/scheduleq/threads_vs_type_key_count_1}
-                 {sandpile 10k/plots/scheduleq/threads vs type key count 1}
-\plotTrialNoLabel{sandpile_10k/plots/scheduleq/threads_vs_count_key_type_unsorted-bottom:16}
-                 {sandpile 10k/plots/scheduleq/threads vs count key type unsorted-bottom 16}
-\plotTrialNoLabel{sandpile_10k/plots/bags/threads_vs_staticwindow_key_fractionwindow_1.0}
-                 {sandpile 10k/plots/bags/threads vs staticwindow key fractionwindow 1.0}
-\plotTrialNoLabel{sandpile_10k/plots/bags/threads_vs_fractionwindow_key_staticwindow_0}
-                 {sandpile 10k/plots/bags/threads vs fractionwindow key staticwindow 0}
-\plotTrialNoLabel{sandpile_10k/plots/blocks/threads_vs_blocksize_key_count_4}
-                 {sandpile 10k/plots/blocks/threads vs blocksize key count 4}
-\plotTrialNoLabel{sandpile_10k/plots/blocks/threads_vs_blocksize_key_count_2}
-                 {sandpile 10k/plots/blocks/threads vs blocksize key count 2}
-\plotTrialNoLabel{sandpile_10k/plots/blocks/threads_vs_count_key_blocksize_256}
-                 {sandpile 10k/plots/blocks/threads vs count key blocksize 256}
-\plotTrialNoLabel{sandpile_10k/plots/blocks/threads_vs_blocksize_key_count_8}
-                 {sandpile 10k/plots/blocks/threads vs blocksize key count 8}
-\plotTrialNoLabel{sandpile_10k/plots/blocks/threads_vs_count_key_blocksize_32}
-                 {sandpile 10k/plots/blocks/threads vs count key blocksize 32}
-\plotTrialNoLabel{sandpile_10k/plots/blocks/threads_vs_blocksize_key_count_16}
-                 {sandpile 10k/plots/blocks/threads vs blocksize key count 16}
-\plotTrialNoLabel{sandpile_10k/plots/blocks/threads_vs_blocksize_key_count_1}
-                 {sandpile 10k/plots/blocks/threads vs blocksize key count 1}
-\plotTrialNoLabel{sandpile_10k/plots/blocks/threads_vs_count_key_blocksize_128}
-                 {sandpile 10k/plots/blocks/threads vs count key blocksize 128}
-\plotTrialNoLabel{sandpile_10k/plots/blocks/threads_vs_count_key_blocksize_64}
-                 {sandpile 10k/plots/blocks/threads vs count key blocksize 64}
-
-\clearpage
-\section[\textsc{sandpile-1m lp}s]{Abelian Sandpile Model with 1,000,000 LPs}
-
-Table \ref{table:sandpile_1m_config} shows the configuration for this model.
-
-\begin{table}
-    \centering
-    \begin{tabular}{|| l | r ||}
-        \hline
-        Parameter                           &   Values\\ [0.5ex]
-        \hline\hline
-        Number of Intersections (or LPs)    &   1,000,000\\
-        Type of network connecting LPs      &   4-directional grid\\
-        Origin of simulation                &   (500,500) co-ordinate\\
-        Grid Size                           &   1000x1000\\
-        Simulation Time                     &   15,000 timestamp units\\
-        Sequential Simulation Time for calculating modularity   &   8,000 timestamp units\\
-        \hline
-    \end{tabular}
-    \caption{\textsc{Large Sandpile Model} setup}\label{table:sandpile_1m_config}
-\end{table}
-
-\plotTrialNoLabel{sandpile_1m/plots/chains/threads_vs_count_key_chainsize_8}
-                 {sandpile 1m/plots/chains/threads vs count key chainsize 8}
-\plotTrialNoLabel{sandpile_1m/plots/chains/threads_vs_chainsize_key_count_1}
-                 {sandpile 1m/plots/chains/threads vs chainsize key count 1}
-\plotTrialNoLabel{sandpile_1m/plots/chains/threads_vs_chainsize_key_count_4}
-                 {sandpile 1m/plots/chains/threads vs chainsize key count 4}
-\plotTrialNoLabel{sandpile_1m/plots/chains/threads_vs_chainsize_key_count_16}
-                 {sandpile 1m/plots/chains/threads vs chainsize key count 16}
-\plotTrialNoLabel{sandpile_1m/plots/chains/threads_vs_count_key_chainsize_4}
-                 {sandpile 1m/plots/chains/threads vs count key chainsize 4}
-\plotTrialNoLabel{sandpile_1m/plots/chains/threads_vs_count_key_chainsize_12}
-                 {sandpile 1m/plots/chains/threads vs count key chainsize 12}
-\plotTrialNoLabel{sandpile_1m/plots/chains/threads_vs_chainsize_key_count_8}
-                 {sandpile 1m/plots/chains/threads vs chainsize key count 8}
-\plotTrialNoLabel{sandpile_1m/plots/chains/threads_vs_chainsize_key_count_2}
-                 {sandpile 1m/plots/chains/threads vs chainsize key count 2}
-\plotTrialNoLabel{sandpile_1m/plots/chains/threads_vs_count_key_chainsize_16}
-                 {sandpile 1m/plots/chains/threads vs count key chainsize 16}
-\plotTrialNoLabel{sandpile_1m/plots/scheduleq/threads_vs_count_key_type_ladder-queue:96}
-                 {sandpile 1m/plots/scheduleq/threads vs count key type ladder-queue 96}
-\plotTrialNoLabel{sandpile_1m/plots/scheduleq/threads_vs_count_key_type_stl-multiset}
-                 {sandpile 1m/plots/scheduleq/threads vs count key type stl-multiset}
-\plotTrialNoLabel{sandpile_1m/plots/scheduleq/threads_vs_count_key_type_unsorted-bottom:50}
-                 {sandpile 1m/plots/scheduleq/threads vs count key type unsorted-bottom 50}
-\plotTrialNoLabel{sandpile_1m/plots/scheduleq/threads_vs_count_key_type_lockfree-unsorted-bottom:50}
-                 {sandpile 1m/plots/scheduleq/threads vs count key type lockfree-unsorted-bottom 50}
-\plotTrialNoLabel{sandpile_1m/plots/scheduleq/threads_vs_type_key_count_16}
-                 {sandpile 1m/plots/scheduleq/threads vs type key count 16}
-\plotTrialNoLabel{sandpile_1m/plots/scheduleq/threads_vs_type_key_count_4}
-                 {sandpile 1m/plots/scheduleq/threads vs type key count 4}
-\plotTrialNoLabel{sandpile_1m/plots/scheduleq/threads_vs_count_key_type_lockfree-unsorted-bottom:96}
-                 {sandpile 1m/plots/scheduleq/threads vs count key type lockfree-unsorted-bottom 96}
-\plotTrialNoLabel{sandpile_1m/plots/scheduleq/threads_vs_count_key_type_splay-tree}
-                 {sandpile 1m/plots/scheduleq/threads vs count key type splay-tree}
-\plotTrialNoLabel{sandpile_1m/plots/scheduleq/threads_vs_count_key_type_unsorted-bottom:96}
-                 {sandpile 1m/plots/scheduleq/threads vs count key type unsorted-bottom 96}
-\plotTrialNoLabel{sandpile_1m/plots/scheduleq/threads_vs_count_key_type_ladder-queue:50}
-                 {sandpile 1m/plots/scheduleq/threads vs count key type ladder-queue 50}
-\plotTrialNoLabel{sandpile_1m/plots/scheduleq/threads_vs_type_key_count_8}
-                 {sandpile 1m/plots/scheduleq/threads vs type key count 8}
-\plotTrialNoLabel{sandpile_1m/plots/scheduleq/threads_vs_count_key_type_lockfree-unsorted-bottom:16}
-                 {sandpile 1m/plots/scheduleq/threads vs count key type lockfree-unsorted-bottom 16}
-\plotTrialNoLabel{sandpile_1m/plots/scheduleq/threads_vs_type_key_count_2}
-                 {sandpile 1m/plots/scheduleq/threads vs type key count 2}
-\plotTrialNoLabel{sandpile_1m/plots/scheduleq/threads_vs_count_key_type_ladder-queue:16}
-                 {sandpile 1m/plots/scheduleq/threads vs count key type ladder-queue 16}
-\plotTrialNoLabel{sandpile_1m/plots/scheduleq/threads_vs_type_key_count_1}
-                 {sandpile 1m/plots/scheduleq/threads vs type key count 1}
-\plotTrialNoLabel{sandpile_1m/plots/scheduleq/threads_vs_count_key_type_unsorted-bottom:16}
-                 {sandpile 1m/plots/scheduleq/threads vs count key type unsorted-bottom 16}
-\plotTrialNoLabel{sandpile_1m/plots/bags/threads_vs_staticwindow_key_fractionwindow_1.0}
-                 {sandpile 1m/plots/bags/threads vs staticwindow key fractionwindow 1.0}
-\plotTrialNoLabel{sandpile_1m/plots/bags/threads_vs_fractionwindow_key_staticwindow_0}
-                 {sandpile 1m/plots/bags/threads vs fractionwindow key staticwindow 0}
-\plotTrialNoLabel{sandpile_1m/plots/blocks/threads_vs_blocksize_key_count_4}
-                 {sandpile 1m/plots/blocks/threads vs blocksize key count 4}
-\plotTrialNoLabel{sandpile_1m/plots/blocks/threads_vs_blocksize_key_count_2}
-                 {sandpile 1m/plots/blocks/threads vs blocksize key count 2}
-\plotTrialNoLabel{sandpile_1m/plots/blocks/threads_vs_count_key_blocksize_256}
-                 {sandpile 1m/plots/blocks/threads vs count key blocksize 256}
-\plotTrialNoLabel{sandpile_1m/plots/blocks/threads_vs_blocksize_key_count_8}
-                 {sandpile 1m/plots/blocks/threads vs blocksize key count 8}
-\plotTrialNoLabel{sandpile_1m/plots/blocks/threads_vs_count_key_blocksize_32}
-                 {sandpile 1m/plots/blocks/threads vs count key blocksize 32}
-\plotTrialNoLabel{sandpile_1m/plots/blocks/threads_vs_blocksize_key_count_16}
-                 {sandpile 1m/plots/blocks/threads vs blocksize key count 16}
-\plotTrialNoLabel{sandpile_1m/plots/blocks/threads_vs_blocksize_key_count_1}
-                 {sandpile 1m/plots/blocks/threads vs blocksize key count 1}
-\plotTrialNoLabel{sandpile_1m/plots/blocks/threads_vs_count_key_blocksize_128}
-                 {sandpile 1m/plots/blocks/threads vs count key blocksize 128}
-\plotTrialNoLabel{sandpile_1m/plots/blocks/threads_vs_count_key_blocksize_64}
-                 {sandpile 1m/plots/blocks/threads vs count key blocksize 64}
 
 \end{document}
