@@ -1,8 +1,7 @@
 # Ph.D. Thesis
 
-### Author : Sounak Gupta
-### Advisor : Dr. Philip A. Wilsey
+**Author  : Sounak Gupta, University of Cincinnati**
+**Advisor : Dr. Philip A. Wilsey, University of Cincinnati**
 
-==================================
-
-Run build.sh
+Run [build](build) to generate statistics, plots, [consolidated overviews](presentation/)
+and [PDF](thesis.pdf)
