@@ -71,27 +71,24 @@
 
 \newcommand{\plotTrial}[3]{
 \begin{figure}
-  \centering
   \begin{subfigure}{\textwidth}
-    \includegraphics[width=\textwidth]{data/#1_Simulation_Runtime_(secs.)}
+    \centerline{\includegraphics[height=.4\textheight]{data/#1_Simulation_Runtime_(secs.)}}
     \subcaption{Simulation Runtime (in seconds)}
   \end{subfigure}
 \end{figure}
 
 \begin{figure}
   \ContinuedFloat
-  \centering
   \begin{subfigure}{\textwidth}
-    \includegraphics[width=\textwidth]{data/#1_Event_Commitment_Ratio}
+    \centerline{\includegraphics[height=.4\textheight]{data/#1_Event_Commitment_Ratio}}
     \subcaption{Event Commitment Ratio}
   \end{subfigure}
 \end{figure}
 
 \begin{figure}
   \ContinuedFloat
-  \centering
   \begin{subfigure}{\textwidth}
-    \includegraphics[width=\textwidth]{data/#1_Event_Processing_Rate_(per_sec)}
+    \centerline{\includegraphics[height=.4\textheight]{data/#1_Event_Processing_Rate_(per_sec)}}
     \subcaption{Event Processing Rate (per second)}
   \end{subfigure}
   \caption{#2}\label{#3}
@@ -100,18 +97,16 @@
 
 \newcommand{\plotOverallNUMA}[3]{
 \begin{figure}
-  \centering
   \begin{subfigure}{\textwidth}
-    \includegraphics[width=\textwidth]{data/#1/plots/top_performers}
+    \centerline{\includegraphics[height=.4\textheight]{data/#1/plots/top_performers}}
     \subcaption{Top Performers}
   \end{subfigure}
 \end{figure}
 
 \begin{figure}
   \ContinuedFloat
-  \centering
   \begin{subfigure}{\textwidth}
-    \includegraphics[width=\textwidth]{data/#1/plots/worst_performers}
+    \centerline{\includegraphics[height=.4\textheight]{data/#1/plots/worst_performers}}
     \subcaption{Worst Performers}
   \end{subfigure}
   \caption{#2}\label{#3}
@@ -120,35 +115,31 @@
 
 \newcommand{\plotOverallSMP}[3]{
 \begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{data_smp/#1/plots/top_performers}
+  \centerline{\includegraphics[height=.4\textheight]{data_smp/#1/plots/top_performers}}
   \caption{#2}\label{#3}
 \end{figure}
 }
 
 \newcommand{\plotTrialNoLabel}[2]{
 \begin{figure}
-  \centering
   \begin{subfigure}{.85\textwidth}
-    \includegraphics[width=.85\textwidth]{data/#1_Simulation_Runtime_(secs.)}
+    \centerline{\includegraphics[width=.85\textwidth]{data/#1_Simulation_Runtime_(secs.)}}
     \subcaption{Simulation Runtime (in seconds)}
   \end{subfigure}
 \end{figure}
 
 \begin{figure}
   \ContinuedFloat
-  \centering
   \begin{subfigure}{.85\textwidth}
-    \includegraphics[width=.85\textwidth]{data/#1_Event_Commitment_Ratio}
+    \centerline{\includegraphics[width=.85\textwidth]{data/#1_Event_Commitment_Ratio}}
     \subcaption{Event Commitment Ratio}
   \end{subfigure}
 \end{figure}
 
 \begin{figure}
   \ContinuedFloat
-  \centering
   \begin{subfigure}{.85\textwidth}
-    \includegraphics[width=.85\textwidth]{data/#1_Event_Processing_Rate_(per_sec)}
+    \centerline{\includegraphics[width=.85\textwidth]{data/#1_Event_Processing_Rate_(per_sec)}}
     \subcaption{Event Processing Rate (per second)}
   \end{subfigure}
   \caption{#2}
@@ -156,9 +147,8 @@
 
 \begin{figure}
   \ContinuedFloat
-  \centering
   \begin{subfigure}{.85\textwidth}
-    \includegraphics[width=.85\textwidth]{data/#1_Speedup_w.r.t._Sequential_Simulation}
+    \centerline{\includegraphics[width=.85\textwidth]{data/#1_Speedup_w.r.t._Sequential_Simulation}}
     \subcaption{Speedup w.r.t. Sequential Simulation}
   \end{subfigure}
 \end{figure}
